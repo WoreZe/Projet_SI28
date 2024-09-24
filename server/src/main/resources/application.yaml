@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mariadb://localhost:3300/server
+    username: root
+    password: isThisSecret?
+    driver-class-name: org.mariadb.jdbc.Driver
+  jackson:
+    write-dates-as-timestamps: false
+token:
+  signing:
+    key: 413F4428472B4B6250655368566D5970337336763979244226442948404D6351
+  access:
+    time: 7200
+  refresh:
+    time: 604800
+
+app:
+  state: "debug"
+server:
+  error:
+    include-message: always
