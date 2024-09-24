@@ -1,0 +1,51 @@
+<div class=" bg-zinc-200 bg-cloud bg-cover w-screen h-screen flex flex-col justify-center items-center">
+
+
+    <div *ngIf="isFirstQuestion"
+        class=" w-11/12 mb-8 p-3 flex justify-center items-center bg-white h-28 madimi-one-regular rounded-xl" [@fadeIn]
+        (@fadeIn.done)="onAnimationEnd($event)">
+        {{textQuestion1}}
+    </div>
+    <div *ngIf="isExplore"
+        class=" w-11/12 mb-8 p-3 flex justify-center items-center bg-white h-28 madimi-one-regular rounded-xl" [@fadeIn]
+        (@fadeIn.done)="onAnimationEnd($event)">
+        {{textQuestion2}}
+    </div>
+    <div *ngIf="isBorder"
+        class=" w-11/12 mb-8 p-3 flex justify-center items-center bg-white h-28 madimi-one-regular rounded-xl" [@fadeIn]
+        (@fadeIn.done)="onAnimationEnd($event)">
+        {{textQuestion3}}
+    </div>
+
+    <div *ngIf="isFirstQuestion" class="flex flex-col bottom-0 items-center p-4 mb-4 w-11/12 rounded-2xl">
+
+        <div id="answer2Container" class="opacity-0 w-11/12 grid grid-rows-2 gap-4 madimi-one-regular">
+            <div class=" flex justify-center items-center h-28 rounded-xl bg-orange-400 mb-8 p-3"
+                [@fadeIn] (@fadeIn.done)="onAnimationEnd($event)">
+                {{textAnswer1_1}}
+            </div>
+            <div class="flex justify-center items-center h-28 rounded-xl bg-orange-400 mb-8 p-3"
+                [@fadeIn] (@fadeIn.done)="onAnimationEnd($event)">
+                {{textAnswer1_2}}
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="isBorder || isExplore" class="flex flex-col bottom-0 items-center p-4 mb-4 w-11/12 rounded-2xl">
+
+        <div id="answer2Container" class="opacity-0 w-11/12 grid grid-rows-2 gap-4 madimi-one-regular">
+            <div class=" flex justify-center items-center h-28 rounded-xl bg-orange-400 mb-8 p-3"
+                [@fadeIn] (@fadeIn.done)="onAnimationEnd($event)">
+                {{textAnswer2_1}}
+            </div>
+            <div class="flex justify-center items-center h-28 rounded-xl bg-orange-400 mb-8 p-3"
+                [@fadeIn] (@fadeIn.done)="onAnimationEnd($event)">
+                {{textAnswer2_2}}
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

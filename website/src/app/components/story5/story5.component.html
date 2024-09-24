@@ -1,0 +1,14 @@
+<div class=" bg-zinc-200 bg-egyptian-temple bg-cover w-screen h-screen flex flex-col justify-center items-center">
+
+
+    <img src="assets/images/Edmond_spirit.jpg" class="w-72 h-72 mb-8 " [@fadeIn]
+        (@fadeIn.done)="onAnimationEnd($event)">
+
+    <div class=" w-11/12 mb-8 p-3 flex justify-center items-center bg-white h-28 madimi-one-regular rounded-xl"
+        [@fadeIn] (@fadeIn.done)="onAnimationEnd($event)">
+        {{textQuestion}}
+    </div>
+
+
+
+</div>

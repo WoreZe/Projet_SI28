@@ -1,0 +1,36 @@
+<div [ngClass]="{
+    'bg-egyptian-temple': !isDarkBackground,
+    'bg-black': isDarkBackground
+  }" class="w-screen bg-cover h-screen flex flex-col justify-end items-center">
+
+  <img *ngIf="!isDarkBackground" src="assets/images/statue_bastet.jpg" class="w-72 h-72 mb-8 " [@fadeIn]
+       (@fadeIn.done)="onAnimationEnd($event)">
+
+  <div class=" w-11/12 mb-8 p-3 flex justify-center items-center bg-white h-28 madimi-one-regular rounded-xl" [@fadeIn]
+       (@fadeIn.done)="onAnimationEnd($event)">
+    {{ textQuestion }}
+  </div>
+
+  <div *ngIf="!isDarkBackground" class=" flex flex-col  bottom-0 items-center p-4 mb-4 w-11/12 rounded-2xl">
+
+    <div id="answer4Container"
+         class="opacity-0 w-1/2 grid grid-cols-2 gap-4 madimi-one-regular">
+      <div
+        class="w-80 h-64 mb-8 pr-8 pl-8 flex justify-center items-center bg-papyrus bg-contain bg-no-repeat bg-center madimi-one-regular rounded-xl "
+        [@fadeIn]
+        (@fadeIn.done)="onAnimationEnd($event)">
+        Pas de solutions sans problèmes
+      </div>
+      <div class=" w-11/12 mb-8 p-3 flex justify-center items-center bg-white h-28 madimi-one-regular rounded-xl"
+           [@fadeIn]
+           (@fadeIn.done)="onAnimationEnd($event)">
+        Edmond avait un célèbre slogan connu de tous à une époque ! Cette information devrait pouvoir être utile plus
+        tard...
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<button (click)="toggleBackground()" class="bg-red-700 mr-8">Allumer la lumière</button>

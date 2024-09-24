@@ -1,0 +1,41 @@
+<div class="h-screen w-full bg-slate-900 flex flex-col">
+  <div class="grow rounded-b-xl bg-amber-50 overflow-clip">
+    @if (htmlPageContent.length == 0) {
+      <div class="flex justify-center items-center flex-col h-full">
+        <h1 class="text-6xl madimi-one-regular">CoScén</h1>
+        <div class="flex gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-current animate-spin size-6">
+            <path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/>
+            <path
+              d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"
+              fill="currentColor"/>
+          </svg>
+          <p>Récupération de l'histoire...</p>
+        </div>
+      </div>
+    } @else {
+      <div class="h-full w-full" [innerHTML]="htmlPageContent"></div>
+    }
+  </div>
+  <div class="p-4 grid grid-cols-3 w-full text-white items-center">
+    <div>
+      <h1 class="text-2xl font-bold">{{instance?.history?.title || "Histoire"}}</h1>
+      <small class="">{{instance?.currentStep?.title || "Etape..."}}</small>
+    </div>
+    <div class="text-center">
+      <p>{{instance?.joinCode}}</p>
+    </div>
+    <div class="flex gap-4 items-center justify-end">
+      @for (player of players; track player.uniqueId) {
+        <div class="flex flex-col items-center gap-2 relative size-12">
+          <img [src]="player.avatar" class="h-full w-full">
+          @if (player.hasResponse){
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute -bottom-2 -right-2 size-6 text-primary-500">
+                <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+            </svg>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

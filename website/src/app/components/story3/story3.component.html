@@ -1,0 +1,27 @@
+<div class=" bg-zinc-200 bg-egyptian-temple bg-cover w-screen h-screen flex flex-col justify-center items-center">
+
+
+     <img src="assets/images/closed_door.jpg" class="w-72 h-72 mb-8 " [@fadeIn]
+      (@fadeIn.done)="onAnimationEnd($event)">
+
+     <div class=" w-11/12 mb-8 p-3 flex justify-center items-center bg-white h-28 madimi-one-regular rounded-xl" [@fadeIn]
+     (@fadeIn.done)="onAnimationEnd($event)">
+     {{textQuestion}}
+   </div>
+
+    <div class=" flex flex-col  bottom-0 items-center p-4 mb-4 w-11/12 rounded-2xl">
+
+      <div id="answer4Container"
+        class="opacity-0 w-1/2 grid grid-cols-2 gap-4 madimi-one-regular">
+        <img src="assets/images/phone.png" class="w-64 h-52 mb-8 " [@fadeIn]
+      (@fadeIn.done)="onAnimationEnd($event)">
+   <div class=" w-11/12 mb-8 p-3 flex justify-center items-center bg-white h-52 madimi-one-regular rounded-xl" [@fadeIn]
+     (@fadeIn.done)="onAnimationEnd($event)">
+     Vous trouvez devant vous, à côté de la porte, un téléphone ! Edmond avait-il développé en secret ce genre de technologies ? Peu importe, il semble qu'il soit nécessaire de prendre quelque chose en photo avec. Edmond adore le vert !
+   </div>
+      </div>
+
+    </div>
+
+
+  </div>

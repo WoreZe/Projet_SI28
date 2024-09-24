@@ -1,0 +1,41 @@
+<div class="w-screen h-screen relative bg-orange-500 flex flex-col justify-center items-center overflow-clip">
+  <div class="bg-orange-600 w-100 h-100 absolute -top-20 -left-20 z-10 rotate-45  rounded-br-3xl rounded-tr-3xl ">
+  </div>
+
+  <div class="bg-orange-600 w-100 h-100 absolute -right-20 -bottom-20 z-10 rounded-full ">
+  </div>
+
+
+    <div class="z-50">
+      <div class="flex justify-center p-4">
+        <h1 class="text-6xl madimi-one-regular">CoScén</h1>
+      </div>
+      <div class="bg-white p-4 overflow-clip z-50">
+        <div id="textAnimation" class=" text-center" [@textAnimation]="showText ? 'out' : 'in'">
+          <p class="text-xl madimi-one-regular">Prêts à commencer l'aventure ?</p>
+        </div>
+
+        @if(!isLoginLoading && !isWebSocketLoading){
+          <div id="inputContainer" class="w-full max-w-md p-4 opacity-0 flex items-center" [@fadeIn]="showText ? 'out' : 'in'">
+            <input type="text" placeholder="Code de connexion" class="w-full p-4 outline madimi-one-regular text-center" #codeInput>
+            <button class="bg-orange-500 text-white py-2 px-4 ml-2 transition duration-300 ease-in-out transform hover:scale-110 madimi-one-regular" (click)="saveCode(codeInput.value)">Enregistrer</button>
+          </div>
+        } @else {
+          <div class="flex justify-center items-center">
+            <p class="text-orange-500 madimi-one-regular">Chargement...</p>
+            <small class="text-gray-400">{{isLoginLoading ? 'Connexion à l\'histoire' : 'Etablissement de la connexion'}}</small>
+          </div>
+        }
+        @if (!!loadingError){
+          <div class="flex justify-center items-center">
+            <p class="text-red-500 madimi-one-regular">{{loadingError}}</p>
+          </div>
+        }
+      </div>
+
+
+    </div>
+
+</div>
+
+

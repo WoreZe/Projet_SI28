@@ -1,0 +1,97 @@
+<div class="h-screen w-full bg-primary-50 flex items-stretch gap-4 p-4">
+  <div class="flex flex-col flex-shrink-0 bg-white rounded-xl overflow-y-auto w-72">
+    <div class="flex justify-between items-center p-4">
+      <div>
+        <h1 class="text-2xl font-bold">Story Editor</h1>
+        <small class="text-primary-900">{{ (currentStory$ | async)?.title }}</small>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+           class="size-6" (click)="createStep()">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+      </svg>
+    </div>
+    <div class="grow overflow-y-auto w-full p-4">
+      @for (step of (steps$ | async); track step.id) {
+        <a class="flex justify-between items-center p-2 bg-primary-50 rounded-xl my-2 transition-colors"
+           [class.!bg-primary-100]="step.id === currentStep?.id" (click)="selectStep(step)">
+          <div class="flex-grow">
+            <h2 class="text-primary-950">{{ step.title }}</h2>
+            <p class="text-sm text-primary-900">#{{ step.slug }}</p>
+          </div>
+          <div class="flex gap-2">
+            @if (step.isEntryPoint){
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
+              </svg>
+            }
+          </div>
+        </a>
+      }
+    </div>
+    <div class="p-1">
+      <button class="p-2 rounded bg-primary-50 w-full" (click)="togglePage()">
+        @switch (viewPage) {
+          @case ('history') {
+            Editer les étapes
+          }
+          @case ('editor') {
+            Modifier l'histoire
+          }
+        }
+      </button>
+    </div>
+  </div>
+  @switch (viewPage){
+    @case ('history'){
+      <div class="grow bg-white flex flex-col rounded-xl overflow-clip">
+
+      </div>
+      }
+    @case ('editor'){
+      <div class="grow bg-white flex flex-col rounded-xl overflow-clip">
+        <div class="shadow flex justify-between items-center h-16 z-30 border-b p-2">
+          <div class="flex gap-4 items-center">
+            <h1 class="text-2xl font-bold">{{ currentStep?.title }}</h1>
+            <button class="btn btn-primary" (click)="saveStep()">Save</button>
+          </div>
+          <div class="flex gap-4 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                 class="size-5" (click)="playStep()">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"/>
+            </svg>
+            <div class="flex gap-2 *:rounded bg-gray-200 p-1 rounded *:p-1">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                   stroke="currentColor" class="size-6 transition-colors" [class.bg-gray-50]="!isHtmlEditing"
+                   (click)="setHtmlEditing(false)">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="m21 7.5-2.25-1.313M21 7.5v2.25m0-2.25-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3 2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75 2.25-1.313M12 21.75V19.5m0 2.25-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                   stroke="currentColor" class="size-6 transition-colors" [class.bg-gray-50]="isHtmlEditing"
+                   (click)="setHtmlEditing(true)">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="grow">
+          @if (isHtmlEditing) {
+            <ngx-monaco-editor
+              [options]="monacOptionsHtml"
+              style="height: 100%"
+              [(ngModel)]="code"
+            ></ngx-monaco-editor>
+          } @else {
+            <ngx-monaco-editor
+              [options]="monacOptionsJs"
+              style="height: 100%"
+              [(ngModel)]="code"
+            ></ngx-monaco-editor>
+          }
+        </div>
+      </div>
+    }
+  }
+</div>
